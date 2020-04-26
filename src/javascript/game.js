@@ -1,65 +1,97 @@
+import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
 
-(function() {
+(function () {
   let submitRegionBtn = document.querySelector('.submit__regionbtn');
+  let nextConuntryBtn = document.querySelector('.game__nextbtn');
   let displayedFlag = document.querySelector('.country__flag');
-  
-    // Get Game Region Data
-    let fetchGameObjects = async (selectedRegion) => {
-      let fetchCall = await fetch(`https://restcountries.eu/rest/v2/region/${selectedRegion}`);
-      let fecthData = await fetchCall.json();
-      return fecthData;
-    };
-    
-    // Get the array of country objects
-    let getRegionObjects = async (enteredRegion) => {
-      let countryObjects = await fetchGameObjects(enteredRegion);
-      let countryInfoObjects = countryObjects.map(country => {
-        // Building a new json object with desired information
-        return {
-          countryName: country.name,
-          capitalCity: country.capital,
-          subRegion: country.subregion,
-          population: country.population,
-          borders: country.borders,
-          languages: country.languages.map(lang => {
-            return lang.name;
-          }),
-          flag: country.flag,
-          regionalblocks: country.regionalBlocs.map(block => {
-            return {
-              acronym: block.acronym,
-              name: block.name
-            }
-          })[0]
-        }
-      });
-      
-      return countryInfoObjects;
-    };
+  let remainingCountries = document.querySelector('.remaining');
+  let pickedRegion = document.querySelector('[name="region-selected"]');
+  let currentRegionData = [];
+  let currentCountry = {};
 
-    // Get a random country and load its flag to screen
-    let displayStarterInfo = async (countryData) => {
-      let countryObjects = await countryData;
-      let currentCountry = getRandomArrItem(countryObjects)
+  // Get API Data, format it and return it from the function
+  let getRegionData = async (enteredRegion = "americas") => {
+    let apiCall = await fetch(`https://restcountries.eu/rest/v2/region/${enteredRegion}`);
+    let apiData = await apiCall.json();
 
-      // Setting country data to screen
-      displayedFlag.setAttribute("src", currentCountry.flag);
-      displayedFlag.setAttribute("alt", `A picture of the flag of ${currentCountry.countryName}.`);
-    };
+    // Cloning data to global variable and passes to the next function
+    currentRegionData = [...objectFormatter(apiData)];
+    displayFirstCountry(currentRegionData);
+  };
 
-    // Get random array item 
-    let getRandomArrItem = (countriesArr) => {
-      return countriesArr[Math.floor(Math.random() * countriesArr.length)];
-    };
+  // Displays the first random country to the page.
+  let displayFirstCountry = async (countryData) => {
+    document.querySelector('.game__flag > h1').textContent = "Current Country's Flag";
+    currentCountry = getRandomArrItem(countryData);
+    setFlagData(currentCountry); // sets flag to page
+    remainingCountries.textContent += countryData.length;
+    submitRegionBtn.style.backgroundColor = "rgba(239, 71, 111, 1)"
+    submitRegionBtn.style.color = "rgba(106, 14, 22)"
+  };
+
+  // Display next country
+  let displayNextCountry = (regionArr) => {
+    let regionObjArr = regionArr;
+    if (regionObjArr.length !== 0) {
+      // Removes the current country from the coutries array
+      let currentCountryIndex = regionObjArr.indexOf(currentCountry);
+      regionObjArr.splice(currentCountryIndex, 1);
+      // Displays the next country to the display;
+      let nextCountry = getRandomArrItem(currentRegionData);
+      setFlagData(nextCountry); // sets flag to page
+      remainingCountries.textContent = `Countries Remaining: ${regionObjArr.length}`;
+    } else {
+      displayRegionEnd(); // no more countries left to guess
+      remainingCountries.textContent = `Countries Remaining: 0`;
+    }
+  };
+
+  // Informs the user that there are no more countries in this region.
+  let displayRegionEnd = () => {
+    document.querySelector('.game__flag > h1').textContent = "That's all the countries for this region! Good job!";
+    submitRegionBtn.textContent = "Play Again";
+    submitRegionBtn.style.backgroundColor = "rgba(6, 214, 160, 1)";
+    submitRegionBtn.style.color = "rgba(5, 95, 71, 1.0)";
+  };
+
+  // Sets current flag to page
+  let setFlagData = (countryObj) => {
+    displayedFlag.setAttribute('src', countryObj.flag);
+    displayedFlag.setAttribute('alt', `A picture of the flag of ${countryObj.name}`);
+  };
+
+
+
+  // Get random array item 
+  let getRandomArrItem = (countriesArr) => {
+    return countriesArr[Math.floor(Math.random() * countriesArr.length)];
+  };
+
+
+
 
   // Event Listeners +++++++++++++++++++++++++++++++++++++++++++
 
   // Get the user entered region on click
   submitRegionBtn.addEventListener('click', () => {
-    let pickedRegion = document.querySelector('[name="region-selected"]').value.toLowerCase();
-    let results = getRegionObjects(pickedRegion);
-    displayStarterInfo(results);
+    let selectedRegion = pickedRegion.value;
+    getRegionData(selectedRegion.toLowerCase());
+
+    // Make Name Uppercase
+
+
+
+    document.querySelector('.current__region').textContent = `Current Region: ${selectedRegion}`;
   })
 
+  //
+  pickedRegion.addEventListener('focus', () => {
+    submitRegionBtn.textContent = "Submit Region";
+  })
+
+  // Display next country in array
+  nextConuntryBtn.addEventListener('click', () => {
+    displayNextCountry(currentRegionData);
+  });
 
 })();

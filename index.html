@@ -10,6 +10,7 @@
 
 <body>
   <main class="container">
+
     <!-- Game Intro & Controls -->
     <section class="game__start">
       <h1 class="game__title">Geo Know It All 🌏</h1>
@@ -22,7 +23,7 @@
       <div class="region__selection">
         <p>Enter the region you'd like to play in the box below.</p>
         <input type="text" name="region-selected">
-        <button class="submit__regionbtn">Submit Region</button>
+        <button class="submit__regionbtn action__btn">Submit Region</button>
       </div>
     </section>
 
@@ -32,7 +33,10 @@
       <img class="country__flag" src="" alt="">
     </section>
 
+    <!-- Game Answer Inputs -->
     <section class="game__inputs">
+      <span class="current__region">Current Region:</span>
+      <span class="remaining">Countries Remaining: </span>
       <label class="input__field" for="countryName">
         Country Name <br>
         <input type="text" name="countryName">
@@ -41,26 +45,30 @@
         Capital <br>
         <input type="text" name="capital">
       </label>
-      <label class="input__field" for="population">
-        Population <br>
-        <input type="text" name="population">
-      </label>
-      <label class="input__field" for="subregion">
-        Sub-Region <br>
-        <input type="text" name="subregion">
+      <label class="input__field" for="region">
+        Region <br>
+        <input type="text" name="region">
       </label>
       <label class="input__field" for="regionbloc">
-        Region Block <br>
+        Economic Block <br>
         <input type="text" name="regionbloc">
       </label>
-      <label class="input__field" for="borderingCountry">
+      <!-- <label class="input__field" for="population">
+        Population <br>
+        <input type="text" name="population">
+      </label> -->
+      <!-- <label class="input__field" for="borderingCountry">
         A Bordering Country <br>
         <input type="text" name="borderingCountry">
       </label>
       <label class="input__field" for="borderingCountry">
         An Official Language <br>
         <input type="text" name="borderingCountry">
-      </label>
+      </label> -->
+      <div>
+        <button class="game__checkanswers action__btn">Check Answers</button>
+        <button class="game__nextbtn action__btn">Next Country</button>
+      </div>
     </section>
   </main>
 

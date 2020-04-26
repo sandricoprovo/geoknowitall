@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 .container {
+  // CSS Grid Layout
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 800px));
   justify-content: center;
@@ -32,6 +33,7 @@
   }
 }
 
+// Media Queries
 @media screen and (min-width: 700px) {
   .game__start {
     grid-column: 1 / span 2;
