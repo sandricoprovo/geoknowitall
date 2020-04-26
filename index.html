@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./src/css/game.css">
+  <title>Geo Know It All</title>
+</head>
+
+<body>
+  <main class="container">
+    <!-- Game Intro & Controls -->
+    <section class="game__start">
+      <h1 class="game__title">Geo Know It All 🌏</h1>
+      <h3>Do you consider yourself good at geography? If your answer is yes, or
+        if you just want some fun, Geo Know It All is the game for you! </h3>
+      <p>This game is based on regions, so first you'll pick a region of the
+        world to focus on. <br><span>The five reagions available are: Africa,
+          Americas, Asia, Europe & Oceania.</span>
+      </p>
+      <div class="region__selection">
+        <p>Enter the region you'd like to play in the box below.</p>
+        <input type="text" name="region-selected">
+        <button class="submit__regionbtn">Submit Region</button>
+      </div>
+    </section>
+
+    <!-- Game Play Section -->
+    <section class="game__flag">
+      <h1>Current Countries Flag</h1>
+      <img class="country__flag" src="" alt="">
+    </section>
+
+    <section class="game__inputs">
+      <label class="input__field" for="countryName">
+        Country Name <br>
+        <input type="text" name="countryName">
+      </label>
+      <label class="input__field" for="capital">
+        Capital <br>
+        <input type="text" name="capital">
+      </label>
+      <label class="input__field" for="population">
+        Population <br>
+        <input type="text" name="population">
+      </label>
+      <label class="input__field" for="subregion">
+        Sub-Region <br>
+        <input type="text" name="subregion">
+      </label>
+      <label class="input__field" for="regoinbloc">
+        Regoin Block <br>
+        <input type="text" name="regoinbloc">
+      </label>
+      <label class="input__field" for="borderingCountry">
+        A Bordering Country <br>
+        <input type="text" name="borderingCountry">
+      </label>
+      <label class="input__field" for="borderingCountry">
+        An Official Language <br>
+        <input type="text" name="borderingCountry">
+      </label>
+    </section>
+  </main>
+
+  <script src="./src/javascript/game.js" type="module"></script>
+</body>
+
+</html>

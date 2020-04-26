@@ -1,0 +1,13 @@
+Country Information Included
+
+Below are the pieces of information for each country.
+1. Country Name
+2. Capital City
+3. Sub-Region
+4. Population
+5. Borders Array
+6. Languages - Name
+7. Flag
+8. Regional Block 
+  - Acronym
+  - Name

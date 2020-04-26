@@ -1,0 +1,135 @@
+@charset "uft-8";
+
+// Variables & Imports
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:wght@800&display=swap");
+
+@mixin setHeadersFont() {
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+}
+
+@mixin setBodyFont() {
+  font-family: "Montserrat", sans-serif;
+}
+
+@import "./gamepage-layout";
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100vw;
+
+  .game__start {
+    width: 100%;
+    padding: 48px 0px 24px 24px;
+
+    .game__title {
+      margin-bottom: 16px;
+      @include setHeadersFont();
+    }
+
+    h3 {
+      width: 80%;
+      margin-bottom: 16px;
+      @include setBodyFont();
+    }
+
+    h3 + p {
+      width: 80%;
+      margin-bottom: 16px;
+      font-size: 16px;
+      @include setBodyFont();
+
+      span {
+        font-weight: bold;
+        font-style: italic;
+      }
+    }
+
+    .region__selection {
+      width: 80%;
+
+      p {
+        width: 100%;
+        font-size: 16px;
+        @include setBodyFont();
+      }
+
+      input {
+        width: 20%;
+        min-width: 140px;
+        padding: 8px;
+        margin: 8px 4px 4px 0px;
+        height: 40px;
+        font-size: 16px;
+        border: 1px solid black;
+        border-radius: 5px;
+
+        &:focus {
+          outline: none;
+        }
+      }
+
+      button {
+        margin: 8px 4px 4px 0px;
+        padding: 12px 24px;
+        border-radius: 5px;
+        font-style: 16px;
+        @include setBodyFont();
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+
+  .game__flag {
+    border: 2px solid black;
+    width: 50%;
+    height: 50vh;
+    min-width: 300px;
+
+    h1 {
+      margin: 40px 0px;
+      @include setHeadersFont();
+    }
+
+    .country__flag {
+      width: 80%;
+      height: 50%;
+    }
+  }
+
+  .game__inputs {
+    border: 2px solid black;
+    padding: 16px 0px 16px 16px;
+    min-height: 50vh;
+    min-width: 300px;
+
+    .input__field {
+      width: 40%;
+      margin: 8px 0px 8px 0px;
+      @include setBodyFont();
+
+      input {
+        width: 80%;
+        padding: 8px;
+        min-width: 230px;
+        height: 40px;
+        font-size: 16px;
+        border: 1px solid black;
+        border-radius: 5px;
+
+        &:focus {
+          outline: none;
+          // border: 2px solid green; Set to highlight color
+        }
+      }
+    }
+  }
+}

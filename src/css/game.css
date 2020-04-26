@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito:wght@800&display=swap");
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .game__start .region__selection {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.container .game__flag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .game__inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  width: 100vw;
+}
+
+.container .game__start {
+  width: 100%;
+  padding: 48px 0px 24px 24px;
+}
+
+.container .game__start .game__title {
+  margin-bottom: 16px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+}
+
+.container .game__start h3 {
+  width: 80%;
+  margin-bottom: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container .game__start h3 + p {
+  width: 80%;
+  margin-bottom: 16px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container .game__start h3 + p span {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.container .game__start .region__selection {
+  width: 80%;
+}
+
+.container .game__start .region__selection p {
+  width: 100%;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container .game__start .region__selection input {
+  width: 20%;
+  min-width: 140px;
+  padding: 8px;
+  margin: 8px 4px 4px 0px;
+  height: 40px;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.container .game__start .region__selection input:focus {
+  outline: none;
+}
+
+.container .game__start .region__selection button {
+  margin: 8px 4px 4px 0px;
+  padding: 12px 24px;
+  border-radius: 5px;
+  font-style: 16px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container .game__start .region__selection button:focus {
+  outline: none;
+}
+
+.container .game__flag {
+  border: 2px solid black;
+  width: 50%;
+  height: 50vh;
+  min-width: 300px;
+}
+
+.container .game__flag h1 {
+  margin: 40px 0px;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+}
+
+.container .game__flag .country__flag {
+  width: 80%;
+  height: 50%;
+}
+
+.container .game__inputs {
+  border: 2px solid black;
+  padding: 16px 0px 16px 16px;
+  min-height: 50vh;
+  min-width: 300px;
+}
+
+.container .game__inputs .input__field {
+  width: 40%;
+  margin: 8px 0px 8px 0px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.container .game__inputs .input__field input {
+  width: 80%;
+  padding: 8px;
+  min-width: 230px;
+  height: 40px;
+  font-size: 16px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.container .game__inputs .input__field input:focus {
+  outline: none;
+}
+/*# sourceMappingURL=game.css.map */
