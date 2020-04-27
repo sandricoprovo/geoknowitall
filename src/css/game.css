@@ -73,15 +73,27 @@
           align-items: flex-start;
 }
 
-.container .game__inputs div {
+.container .game__inputs .input__selection {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .game__inputs .input__selection + div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -150,7 +162,6 @@ html {
 }
 
 .container .action__btn {
-  margin: 8px 4px 4px 0px;
   font-style: 16px;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
@@ -275,7 +286,7 @@ html {
 .container .game__inputs {
   margin-top: 48px;
   min-height: 500px;
-  padding: 16px 0px 16px 16px;
+  padding: 16px 0px 16px 0px;
 }
 
 .container .game__inputs p {
@@ -311,7 +322,7 @@ html {
 }
 
 .container .game__inputs .input__field select {
-  width: 260px;
+  width: 305px;
   height: 40px;
   border: 1px solid rgba(7, 59, 76, 0.2);
 }
@@ -332,6 +343,10 @@ html {
 }
 
 .container .game__inputs .input__field div {
+  width: 100%;
+}
+
+.container .game__inputs .input__selection + div {
   width: 100%;
 }
 

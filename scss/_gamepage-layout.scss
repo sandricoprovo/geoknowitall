@@ -38,10 +38,16 @@
     justify-content: space-evenly;
     align-items: flex-start;
 
-    div {
+    .input__selection {
       display: flex;
       flex-wrap: wrap;
-      justify-content: center;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .input__selection + div {
+      display: flex;
+      justify-content: space-evenly;
       align-items: center;
     }
   }

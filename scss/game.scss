@@ -25,7 +25,7 @@ html {
   background-color: rgba(50, 55, 56, 0.82);
 
   .action__btn {
-    margin: 8px 4px 4px 0px;
+    // margin: 8px 4px 4px 0px;
     font-style: 16px;
     @include setHeadersFont();
     color: darken($color: $green, $amount: 40);
@@ -134,7 +134,7 @@ html {
   .game__inputs {
     margin-top: 48px;
     min-height: 500px;
-    padding: 16px 0px 16px 16px;
+    padding: 16px 0px 16px 0px;
 
     p {
       margin: 0px 8px;
@@ -163,7 +163,7 @@ html {
       }
 
       select {
-        width: 260px;
+        width: 305px;
         height: 40px;
         border: 1px solid rgba(7, 59, 76, 0.2);
 
@@ -186,6 +186,10 @@ html {
       div {
         width: 100%;
       }
+    }
+
+    .input__selection + div {
+      width: 100%;
     }
   }
 
