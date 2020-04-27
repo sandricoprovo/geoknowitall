@@ -99,6 +99,7 @@
   }
 
   .game__flag {
+    border: 2px solid green;
     padding-bottom: 24px;
     min-height: 50%;
 
@@ -116,20 +117,30 @@
   }
 
   .game__inputs {
+    border: 2px solid black;
+    min-height: 500px;
     padding: 16px 0px 16px 16px;
 
-    span {
+    p {
+      margin: 0px 8px;
       @include setHeadersFont();
     }
 
     .input__field {
       width: 40%;
+      min-width: 260px;
       margin: 16px 0px 16px 0px;
       @include setBodyFont();
       transition: color 0.4s ease-in-out;
 
       .answer__correct {
         font-size: 12px;
+        margin: 0px;
+      }
+
+      span {
+        font-size: 9px;
+        width: 60px;
       }
 
       input {
@@ -155,7 +166,7 @@
         border: 2px solid $green;
       }
 
-      &::after {
+      &::before {
         content: "\2713";
         color: $green;
       }
@@ -166,10 +177,14 @@
         border: 2px solid $red;
       }
 
-      &::after {
+      &::before {
         content: "\2717";
         color: $red;
       }
+    }
+
+    div {
+      width: 100%;
     }
   }
 }

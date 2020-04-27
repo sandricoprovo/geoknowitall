@@ -45,16 +45,28 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+}
+
+.container .game__inputs div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @media screen and (min-width: 700px) {
@@ -170,6 +182,7 @@
 }
 
 .container .game__flag {
+  border: 2px solid green;
   padding-bottom: 24px;
   min-height: 50%;
 }
@@ -189,10 +202,13 @@
 }
 
 .container .game__inputs {
+  border: 2px solid black;
+  min-height: 500px;
   padding: 16px 0px 16px 16px;
 }
 
-.container .game__inputs span {
+.container .game__inputs p {
+  margin: 0px 8px;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -200,6 +216,7 @@
 
 .container .game__inputs .input__field {
   width: 40%;
+  min-width: 260px;
   margin: 16px 0px 16px 0px;
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0.03em;
@@ -209,6 +226,12 @@
 
 .container .game__inputs .input__field .answer__correct {
   font-size: 12px;
+  margin: 0px;
+}
+
+.container .game__inputs .input__field span {
+  font-size: 9px;
+  width: 60px;
 }
 
 .container .game__inputs .input__field input {
@@ -233,7 +256,7 @@
   border: 2px solid #06d6a0;
 }
 
-.container .game__inputs .input__field--correct::after {
+.container .game__inputs .input__field--correct::before {
   content: "\2713";
   color: #06d6a0;
 }
@@ -242,8 +265,12 @@
   border: 2px solid #ef476f;
 }
 
-.container .game__inputs .input__field--incorrect::after {
+.container .game__inputs .input__field--incorrect::before {
   content: "\2717";
   color: #ef476f;
+}
+
+.container .game__inputs div {
+  width: 100%;
 }
 /*# sourceMappingURL=game.css.map */

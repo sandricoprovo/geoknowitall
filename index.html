@@ -35,9 +35,11 @@
 
     <!-- Game Answer Inputs -->
     <section class="game__inputs">
-      <span class="current__region">Current Region:</span>
-      <span class="remaining">Countries Remaining: </span>
-      <span class="score__current">Current Score: </span>
+      <div class="session__details">
+        <p class="current__region">Current Region:</p>
+        <p class="remaining">Countries Remaining: </p>
+        <p class="score__current">Current Score: </p>
+      </div>
       <label class="input__field" for="countryName">
         Country Name <br>
         <input type="text" name="countryName">
@@ -54,7 +56,7 @@
         <p class="answer__correct correct__region">Correct Answer: </p>
       </label>
       <label class="input__field" for="borderingCountry">
-        One Boring Country <p>Acronomy, ex: CAN</p> <br>
+        A Border Country <span>ex: CAN</span> <br>
         <input type="text" name="borderingCountry">
         <p class="answer__correct correct__bordering">Correct Answers: </p>
       </label>
