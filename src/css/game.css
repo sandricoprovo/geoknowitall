@@ -339,7 +339,7 @@ html {
   border-top: 2px solid #ffffff;
   width: 100%;
   padding: 8px;
-  height: 24vh;
+  height: 28vh;
   text-align: center;
 }
 
@@ -365,7 +365,7 @@ html {
 }
 
 .container footer div {
-  margin: 16px 0px;
+  margin: 24px 0px;
 }
 
 .container footer div a {
