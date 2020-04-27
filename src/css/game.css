@@ -81,6 +81,7 @@
   font-style: 16px;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
+  letter-spacing: 0.06em;
   color: #035f47;
   display: inline-block;
   height: 40px;
@@ -115,12 +116,14 @@
   margin-bottom: 16px;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 .container .game__start h3 {
   width: 80%;
   margin-bottom: 16px;
   font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.03em;
 }
 
 .container .game__start h3 + p {
@@ -128,6 +131,7 @@
   margin-bottom: 16px;
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.03em;
 }
 
 .container .game__start h3 + p span {
@@ -143,6 +147,7 @@
   width: 100%;
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.03em;
 }
 
 .container .game__start .region__selection input {
@@ -173,35 +178,43 @@
   margin: 40px 0px;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 .container .game__flag .country__flag {
   width: 80%;
   height: 50%;
   max-height: 300px;
+  max-width: 500px;
 }
 
 .container .game__inputs {
   padding: 16px 0px 16px 16px;
 }
 
-.container .game__inputs .remaining {
+.container .game__inputs span {
   font-family: "Nunito", sans-serif;
   font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 .container .game__inputs .input__field {
   width: 40%;
-  margin: 8px 0px 8px 0px;
+  margin: 16px 0px 16px 0px;
   font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.03em;
   -webkit-transition: color 0.4s ease-in-out;
   transition: color 0.4s ease-in-out;
+}
+
+.container .game__inputs .input__field .answer__correct {
+  font-size: 12px;
 }
 
 .container .game__inputs .input__field input {
   width: 80%;
   padding: 8px;
-  min-width: 230px;
+  min-width: 260px;
   height: 40px;
   font-size: 16px;
   border: 1px solid rgba(7, 59, 76, 0.3);

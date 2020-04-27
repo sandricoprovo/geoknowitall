@@ -2,11 +2,13 @@
 @mixin setHeadersFont() {
   font-family: "Nunito", sans-serif;
   font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 // Set body font
 @mixin setBodyFont() {
   font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.03em;
 }
 
 // Set fluid font size
