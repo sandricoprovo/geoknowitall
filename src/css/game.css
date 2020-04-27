@@ -9,6 +9,24 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+}
+
+.container .game__start {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container .game__start .region__selection {
@@ -17,12 +35,12 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container .game__flag {
@@ -61,6 +79,36 @@
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container footer div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
@@ -75,6 +123,11 @@
     -ms-grid-column-span: 2;
     grid-column: 1 / span 2;
   }
+  footer {
+    -ms-grid-column: 1;
+    -ms-grid-column-span: 2;
+    grid-column: 1 / span 2;
+  }
 }
 
 * {
@@ -84,8 +137,16 @@
           box-sizing: border-box;
 }
 
+html {
+  background-image: url("../images/backgroundImg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 .container {
   width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(50, 55, 56, 0.82);
 }
 
 .container .action__btn {
@@ -94,7 +155,7 @@
   font-family: "Nunito", sans-serif;
   font-weight: 800;
   letter-spacing: 0.06em;
-  color: #035f47;
+  color: #00100c;
   display: inline-block;
   height: 40px;
   line-height: 40px;
@@ -121,11 +182,13 @@
 }
 
 .container .game__start {
-  padding: 48px 0px 24px 24px;
+  padding: 48px 0px 24px 0px;
+  text-align: center;
 }
 
 .container .game__start .game__title {
   margin-bottom: 16px;
+  color: #ffffff;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -133,6 +196,7 @@
 
 .container .game__start h3 {
   width: 80%;
+  color: #ffffff;
   margin-bottom: 16px;
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0.03em;
@@ -142,11 +206,15 @@
   width: 80%;
   margin-bottom: 16px;
   font-size: 16px;
+  color: #ffffff;
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0.03em;
 }
 
 .container .game__start h3 + p span {
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   font-weight: bold;
   font-style: italic;
 }
@@ -158,8 +226,10 @@
 .container .game__start .region__selection p {
   width: 100%;
   font-size: 16px;
-  font-family: "Montserrat", sans-serif;
-  letter-spacing: 0.03em;
+  color: #ffffff;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.06em;
 }
 
 .container .game__start .region__selection input {
@@ -182,13 +252,14 @@
 }
 
 .container .game__flag {
-  border: 2px solid green;
   padding-bottom: 24px;
+  margin-top: 32px;
   min-height: 50%;
 }
 
 .container .game__flag h1 {
   margin: 40px 0px;
+  color: #ffffff;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -202,13 +273,14 @@
 }
 
 .container .game__inputs {
-  border: 2px solid black;
+  margin-top: 48px;
   min-height: 500px;
   padding: 16px 0px 16px 16px;
 }
 
 .container .game__inputs p {
   margin: 0px 8px;
+  color: #ffffff;
   font-family: "Nunito", sans-serif;
   font-weight: 800;
   letter-spacing: 0.06em;
@@ -216,8 +288,9 @@
 
 .container .game__inputs .input__field {
   width: 40%;
-  min-width: 260px;
-  margin: 16px 0px 16px 0px;
+  min-width: 300px;
+  margin: 32px 0px 32px 0px;
+  color: #ffffff;
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0.03em;
   -webkit-transition: color 0.4s ease-in-out;
@@ -227,50 +300,110 @@
 .container .game__inputs .input__field .answer__correct {
   font-size: 12px;
   margin: 0px;
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.03em;
 }
 
 .container .game__inputs .input__field span {
+  color: #ffffff;
   font-size: 9px;
   width: 60px;
 }
 
-.container .game__inputs .input__field input {
-  width: 80%;
-  padding: 8px;
-  min-width: 260px;
+.container .game__inputs .input__field select {
+  width: 260px;
   height: 40px;
-  font-size: 16px;
-  border: 1px solid rgba(7, 59, 76, 0.3);
-  border-radius: 5px;
-  -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
-  color: #333333;
+  border: 1px solid rgba(7, 59, 76, 0.2);
 }
 
-.container .game__inputs .input__field input:focus {
+.container .game__inputs .input__field select:focus {
   outline: none;
   border: 1px solid #073b4c;
 }
 
-.container .game__inputs .input__field--correct input {
-  border: 2px solid #06d6a0;
+.container .game__inputs .input__field .input__field--correct {
+  border: 3px solid #06d6a0;
+  background-color: #06d6a0;
 }
 
-.container .game__inputs .input__field--correct::before {
-  content: "\2713";
+.container .game__inputs .input__field .input__field--incorrect {
+  border: 3px solid #ef476f;
+  background-color: #ef476f;
+}
+
+.container .game__inputs .input__field div {
+  width: 100%;
+}
+
+.container footer {
+  border-top: 2px solid black;
+  width: 100%;
+  padding: 8px;
+  height: 24vh;
+  text-align: center;
+}
+
+.container footer p {
+  color: #ffffff;
+  font-family: "Nunito", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.container footer a {
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 0.03em;
+  width: 120px;
+  height: 40px;
+  color: #ffffff;
+  padding: 0 14px;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.container footer div {
+  margin: 16px 0px;
+}
+
+.container footer div a {
+  margin: 0px 16px;
+  text-decoration: none;
+}
+
+.container footer div a:hover {
   color: #06d6a0;
 }
 
-.container .game__inputs .input__field--incorrect input {
-  border: 2px solid #ef476f;
-}
-
-.container .game__inputs .input__field--incorrect::before {
-  content: "\2717";
-  color: #ef476f;
-}
-
-.container .game__inputs div {
+.container footer div a::before, .container footer div a::after {
+  position: absolute;
+  content: "";
+  left: 0;
+  height: 2px;
   width: 100%;
+  background-color: #06d6a0;
+  -webkit-transition: -webkit-transform 0.2s ease-in-out;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+
+.container footer div a::before {
+  top: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.container footer div a::after {
+  bottom: 0;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+
+.container footer div a:hover::after, .container footer div a:hover::before {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
 }
 /*# sourceMappingURL=game.css.map */

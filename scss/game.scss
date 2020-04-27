@@ -13,14 +13,22 @@
   box-sizing: border-box;
 }
 
+html {
+  background-image: url("../images/backgroundImg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
 .container {
   width: 100vw;
+  min-height: 100vh;
+  background-color: rgba(50, 55, 56, 0.82);
 
   .action__btn {
     margin: 8px 4px 4px 0px;
     font-style: 16px;
     @include setHeadersFont();
-    color: darken($color: $green, $amount: 24);
+    color: darken($color: $green, $amount: 40);
     display: inline-block;
     height: 40px;
     line-height: 40px;
@@ -44,15 +52,18 @@
   }
 
   .game__start {
-    padding: 48px 0px 24px 24px;
+    padding: 48px 0px 24px 0px;
+    text-align: center;
 
     .game__title {
       margin-bottom: 16px;
+      color: $text-white;
       @include setHeadersFont();
     }
 
     h3 {
       width: 80%;
+      color: $text-white;
       margin-bottom: 16px;
       @include setBodyFont();
     }
@@ -61,9 +72,11 @@
       width: 80%;
       margin-bottom: 16px;
       font-size: 16px;
+      color: $text-white;
       @include setBodyFont();
 
       span {
+        @include setHeadersFont();
         font-weight: bold;
         font-style: italic;
       }
@@ -75,7 +88,8 @@
       p {
         width: 100%;
         font-size: 16px;
-        @include setBodyFont();
+        color: $text-white;
+        @include setHeadersFont();
       }
 
       input {
@@ -99,12 +113,13 @@
   }
 
   .game__flag {
-    border: 2px solid green;
     padding-bottom: 24px;
+    margin-top: 32px;
     min-height: 50%;
 
     h1 {
       margin: 40px 0px;
+      color: $text-white;
       @include setHeadersFont();
     }
 
@@ -117,74 +132,125 @@
   }
 
   .game__inputs {
-    border: 2px solid black;
+    margin-top: 48px;
     min-height: 500px;
     padding: 16px 0px 16px 16px;
 
     p {
       margin: 0px 8px;
+      color: $text-white;
       @include setHeadersFont();
     }
 
     .input__field {
       width: 40%;
-      min-width: 260px;
-      margin: 16px 0px 16px 0px;
+      min-width: 300px;
+      margin: 32px 0px 32px 0px;
+      color: $text-white;
       @include setBodyFont();
       transition: color 0.4s ease-in-out;
 
       .answer__correct {
         font-size: 12px;
         margin: 0px;
+        @include setBodyFont();
       }
 
       span {
+        color: $text-white;
         font-size: 9px;
         width: 60px;
       }
 
-      input {
-        width: 80%;
-        padding: 8px;
-        min-width: 260px;
+      select {
+        width: 260px;
         height: 40px;
-        font-size: 16px;
-        border: 1px solid rgba(7, 59, 76, 0.3);
-        border-radius: 5px;
-        transition: all 0.4s ease-in-out;
-        color: lighten($color: #000, $amount: 20);
+        border: 1px solid rgba(7, 59, 76, 0.2);
 
         &:focus {
           outline: none;
           border: 1px solid rgba(7, 59, 76, 1);
         }
       }
+
+      .input__field--correct {
+        border: 3px solid $green;
+        background-color: $green;
+      }
+
+      .input__field--incorrect {
+        border: 3px solid $red;
+        background-color: $red;
+      }
+
+      div {
+        width: 100%;
+      }
+    }
+  }
+
+  footer {
+    border-top: 2px solid black;
+    width: 100%;
+    padding: 8px;
+    height: 24vh;
+    text-align: center;
+
+    p {
+      color: $text-white;
+      @include setHeadersFont();
     }
 
-    .input__field--correct {
-      input {
-        border: 2px solid $green;
-      }
-
-      &::before {
-        content: "\2713";
-        color: $green;
-      }
-    }
-
-    .input__field--incorrect {
-      input {
-        border: 2px solid $red;
-      }
-
-      &::before {
-        content: "\2717";
-        color: $red;
-      }
+    a {
+      @include setBodyFont();
+      width: 120px;
+      height: 40px;
+      color: $text-white;
+      padding: 0 14px;
+      text-align: center;
+      line-height: 40px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
     }
 
     div {
-      width: 100%;
+      margin: 16px 0px;
+
+      a {
+        margin: 0px 16px;
+        text-decoration: none;
+
+        &:hover {
+          color: $green;
+        }
+
+        &::before,
+        &::after {
+          position: absolute;
+          content: "";
+          left: 0;
+          height: 2px;
+          width: 100%;
+          background-color: $green;
+          transition: transform 0.2s ease-in-out;
+        }
+
+        &::before {
+          top: 0;
+          transform: translateX(-100%);
+        }
+
+        &::after {
+          bottom: 0;
+          transform: translateX(100%);
+        }
+
+        &:hover::after,
+        &:hover::before {
+          transform: translateX(0);
+        }
+      }
     }
   }
 }

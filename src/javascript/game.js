@@ -1,19 +1,17 @@
 import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
 
 (function () {
+  // Globals
   let submitRegionBtn = document.querySelector('.submit__regionbtn');
   let nextConuntryBtn = document.querySelector('.game__nextbtn');
   let checkAnswersBtn = document.querySelector('.game__checkanswers');
   let displayedFlag = document.querySelector('.country__flag');
   let remainingCountries = document.querySelector('.remaining');
   let scoreTally = document.querySelector('.score__current');
-  // Input Labels
   let pickedRegion = document.querySelector('[name="region-selected"]');
-  let nameLabel = document.querySelector('[for="countryName"]');
-  let capitalLabel = document.querySelector('[for="capital"]');
-  let regionLabel = document.querySelector('[for="region"]');
-  let borderingLabel = document.querySelector('[for="borderingCountry"]');
   let currentRegionData = [];
+  let selectionPool = []
+  let currentOptions = [];
   let currentCountry = {};
   let correctAnswers = 0;
   let totalScore = 0;
@@ -25,6 +23,7 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
 
     // Cloning data to global variable and passes to the next function
     currentRegionData = [...objectFormatter(apiData)];
+    selectionPool = [...objectFormatter(apiData)];
     totalScore = currentRegionData.length * 4;
     displayFirstCountry(currentRegionData);
   };
@@ -37,12 +36,14 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
     remainingCountries.textContent = `Countries Remaining: ${countryData.length}`;
     scoreTally.textContent = `Current Score: ${correctAnswers} / ${totalScore}`;
     displayGameState("refresh");
+    loadOptions(countryData, currentCountry);
   };
 
   // Display next country
   let displayNextCountry = (regionArr) => {
     let regionObjArr = regionArr;
     if (regionObjArr.length > 1) {
+      document.querySelector('.game__flag > h1').textContent = "Current Country's Flag";
       // Removes the current country from the coutries array
       let currentCountryIndex = regionObjArr.indexOf(currentCountry);
       regionObjArr.splice(currentCountryIndex, 1);
@@ -51,6 +52,7 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
       currentCountry = nextCountry;
       setFlagData(nextCountry); // sets flag to page
       setCorrectAnswers("refresh");
+      loadOptions(selectionPool, currentCountry);
       remainingCountries.textContent = `Countries Remaining: ${regionObjArr.length}`;
     } else {
       displayGameState("end");
@@ -67,7 +69,7 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
       submitRegionBtn.style.color = "rgba(5, 95, 71, 1.0)";
     } else if (currentState === "refresh") {
       submitRegionBtn.style.backgroundColor = "rgba(239, 71, 111, 1)"
-      submitRegionBtn.style.color = "rgba(106, 14, 22)"
+      submitRegionBtn.style.color = "rgba(47, 13, 19, 1.0)"
     }
   };
 
@@ -78,37 +80,35 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
     let regionAnswer = document.querySelector('[name="region"]');
     let borderingAnswer = document.querySelector('[name="borderingCountry"]');
 
-    console.log(currentCountry)
-
-    // Checking Answers
-    answerCheckerUtil(nameLabel, nameAnswer, "name");
-    answerCheckerUtil(capitalLabel, capitalAnswer, "capital");
-    answerCheckerUtil(regionLabel, regionAnswer, "region");
-    answerCheckerUtil(borderingLabel, borderingAnswer, "bordering");
-    scoreTally.textContent = `Current Score: ${correctAnswers} / ${totalScore}`;
-    setCorrectAnswers("fill");
+    if (!nameAnswer.classList.contains("input__field--correct") && !nameAnswer.classList.contains("input__field--incorrect")) {
+      // Checking Answers
+      answerCheckerUtil(nameAnswer, "name");
+      answerCheckerUtil(capitalAnswer, "capital");
+      answerCheckerUtil(regionAnswer, "region");
+      answerCheckerUtil(borderingAnswer, "bordering");
+      scoreTally.textContent = `Current Score: ${correctAnswers} / ${totalScore}`;
+      setCorrectAnswers("fill");
+    } else {
+      document.querySelector('.game__flag > h1').textContent = "You already checked those answers.";
+    }
   }
 
   // Adds Classes to Show Correct or Incorrect answers
-  let answerCheckerUtil = (label, answer, propertyToCheck) => {
-    let answerToCheck = answer.value.toLowerCase();
+  let answerCheckerUtil = (answer, propertyToCheck) => {
+    let answerToCheck = answer.value;
     // Check Answers 
     if (propertyToCheck === "bordering") {
-      let answerIndex = currentCountry.bordering.findIndex(country => `${answerToCheck}` === country);
-      if (currentCountry.bordering.length === 0 && answerToCheck === "") {
-        label.classList.add("input__field--correct");
+      if (answerToCheck === currentCountry[propertyToCheck].join("")) {
         correctAnswers += 1;
-      } else if (answerIndex >= 0) {
-        label.classList.add("input__field--correct");
-        correctAnswers += 1;
+        answer.classList.add("input__field--correct");
       } else {
-        label.classList.add("input__field--incorrect");
+        answer.classList.add("input__field--incorrect");
       }
     } else if (answerToCheck === currentCountry[propertyToCheck]) {
-      label.classList.add("input__field--correct");
+      answer.classList.add("input__field--correct");
       correctAnswers += 1;
     } else {
-      label.classList.add("input__field--incorrect");
+      answer.classList.add("input__field--incorrect");
     }
   };
 
@@ -148,17 +148,49 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
       correctNameAnswer.textContent = `Correct Answer: ${currentCountry.name}`;
       correctCapitalAnswer.textContent = `Correct Answer: ${currentCountry.capital}`;
       correctRegionAnswer.textContent = `Correct Answer: ${currentCountry.region}`;
-      correctBordersAnswer.textContent = `Correct Answers: ${currentCountry.bordering}`;
+      correctBordersAnswer.textContent = `Correct Answer: ${currentCountry.bordering.join("")}`;
     } else if (state === "refresh") {
       correctNameAnswer.textContent = `Correct Answer:`;
       correctCapitalAnswer.textContent = `Correct Answer:`;
       correctRegionAnswer.textContent = `Correct Answer:`;
-      correctBordersAnswer.textContent = `Correct Answers:`;
+      correctBordersAnswer.textContent = `Correct Answer:`;
     }
   };
 
+  // Load options to the screen answers to selection boxes
+  let loadOptions = (countriesArr, curCountry) => {
+    let nameAnswer = document.querySelector('[name="countryName"]');
+    let capitalAnswer = document.querySelector('[name="capital"]');
+    let regionAnswer = document.querySelector('[name="region"]');
+    let borderingAnswer = document.querySelector('[name="borderingCountry"]');
 
+    // refresh current selections
+    currentOptions = [];
+    nameAnswer.innerHTML = `<option value="" selected>Pick An Option</option>`;
+    capitalAnswer.innerHTML = `<option value="" selected>Pick An Option</option>`;
+    regionAnswer.innerHTML = `<option value="" selected>Pick An Option</option>`;
+    borderingAnswer.innerHTML = `<option value="" selected>Pick An Option</option>`;
 
+    // Load All options to display
+    currentOptions.push(getRandomArrItem(countriesArr), getRandomArrItem(countriesArr), getRandomArrItem(countriesArr), curCountry);
+
+    // sort the options to randomize placement of correct answer
+    let sortedOptions = currentOptions.sort((obj1, obj2) => {
+      if (obj1.name < obj2.name) //sort string ascending
+        return -1
+      if (obj1.name > obj2.name)
+        return 1
+      return 0 //default return value (no sorting)
+    });
+
+    // Loop through sorted options and push options to page
+    sortedOptions.forEach(object => {
+      nameAnswer.innerHTML += `<option value="${object.name}">${object.name}</option>`;
+      capitalAnswer.innerHTML += `<option value="${object.capital}">${object.capital}</option>`;
+      regionAnswer.innerHTML += `<option value="${object.region}">${object.region}</option>`;
+      borderingAnswer.innerHTML += `<option value="${object.bordering.join("")}">${object.bordering}</option>`;
+    })
+  };
 
   // Event Listeners +++++++++++++++++++++++++++++++++++++++++++
 
@@ -167,7 +199,7 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
     let selectedRegion = pickedRegion.value;
     getRegionData(selectedRegion.toLowerCase());
     totalScore = 0;
-    correctAnswers = 0
+    correctAnswers = 0;
 
     // Make First Letter Uppercase
     let formattedRegion = selectedRegion.replace(/^./, selectedRegion[0].toUpperCase())
@@ -183,10 +215,10 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
   nextConuntryBtn.addEventListener('click', () => {
     displayNextCountry(currentRegionData);
     // Removes input answer class
-    removeInputClasses(nameLabel);
-    removeInputClasses(capitalLabel);
-    removeInputClasses(regionLabel);
-    removeInputClasses(borderingLabel);
+    removeInputClasses(document.querySelector('[name="countryName"]'));
+    removeInputClasses(document.querySelector('[name="capital"]'));
+    removeInputClasses(document.querySelector('[name="region"]'));
+    removeInputClasses(document.querySelector('[name="borderingCountry"]'));
   });
 
   // Checking the users answers on click

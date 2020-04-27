@@ -40,31 +40,64 @@
         <p class="remaining">Countries Remaining: </p>
         <p class="score__current">Current Score: </p>
       </div>
-      <label class="input__field" for="countryName">
-        Country Name <br>
-        <input type="text" name="countryName">
-        <p class="answer__correct correct__name">Correct Answer: </p>
-      </label>
-      <label class="input__field" for="capital">
-        Capital <br>
-        <input type="text" name="capital">
-        <p class="answer__correct correct__capital">Correct Answer: </p>
-      </label>
-      <label class="input__field" for="region">
-        Region <br>
-        <input type="text" name="region">
-        <p class="answer__correct correct__region">Correct Answer: </p>
-      </label>
-      <label class="input__field" for="borderingCountry">
-        A Border Country <span>ex: CAN</span> <br>
-        <input type="text" name="borderingCountry">
-        <p class="answer__correct correct__bordering">Correct Answers: </p>
-      </label>
+
+      <!-- Answer Selection -->
+      <div class="input__selection">
+        <label class="input__field" for="countryName">
+          Country Name <br>
+          <!-- <input type="text" name="countryName"> -->
+          <select name="countryName" classs="">
+            <option value="" selected>Pick An Option</option>
+          </select>
+          <p class="answer__correct correct__name">Correct Answer: </p>
+        </label>
+        <label class="input__field" for="capital">
+          Capital <br>
+          <!-- <input type="text" name="capital"> -->
+          <select name="capital" class="">
+            <option value="" selected>Pick An Option</option>
+          </select>
+          <p class="answer__correct correct__capital">Correct Answer: </p>
+        </label>
+        <label class="input__field" for="region">
+          Sub-Region <br>
+          <!-- <input type="text" name="region"> -->
+          <select name="region" class="">
+            <option value="" selected>Pick An Option</option>
+          </select>
+          <p class="answer__correct correct__region">Correct Answer: </p>
+        </label>
+        <label class="input__field" for="borderingCountry">
+          Bordering Countries <span>ex: CAN</span> <br>
+          <!-- <input type="text" name="borderingCountry"> -->
+
+          <select name="borderingCountry" class="">
+            <option value="" selected>Pick An Option</option>
+          </select>
+          <p class="answer__correct correct__bordering">Correct Answer: </p>
+        </label>
+      </div>
+
+      <!-- Answer Submission -->
       <div>
         <button class="game__checkanswers action__btn">Check Answers</button>
         <button class="game__nextbtn action__btn">Next Country</button>
       </div>
     </section>
+
+    <footer>
+      <p>Designed & Coded by Sandrico Provo</p>
+      <div>
+        <a href="https://sandricoprovo.dev/" target="_blank">My Website</a>
+        <a href="https://www.linkedin.com/in/sandrico-provo-7ab42a93/"
+          target="_blank">LinkedIn</a>
+        <a href="https://twitter.com/SandricoP" target="_blank">Twitter</a>
+        <a href="https://github.com/sandricoprovo" target="_blank">GitHub</a>
+      </div>
+      <p>Information From:
+        <a href="https://restcountries.eu/">REST Countries API</a>
+      </p>
+    </footer>
   </main>
 
   <script src="./src/javascript/game.js" type="module"></script>
