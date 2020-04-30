@@ -95,16 +95,17 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
 
   // Adds Classes to Show Correct or Incorrect answers
   let answerCheckerUtil = (answer, propertyToCheck) => {
-    let answerToCheck = answer.value;
+    let answerToCheck = answer.value.toLowerCase();
+
     // Check Answers 
     if (propertyToCheck === "bordering") {
-      if (answerToCheck === currentCountry[propertyToCheck].join("")) {
+      if (answerToCheck === currentCountry[propertyToCheck].join("").toLowerCase()) {
         correctAnswers += 1;
         answer.classList.add("input__field--correct");
       } else {
         answer.classList.add("input__field--incorrect");
       }
-    } else if (answerToCheck === currentCountry[propertyToCheck]) {
+    } else if (answerToCheck === currentCountry[propertyToCheck].toLowerCase()) {
       answer.classList.add("input__field--correct");
       correctAnswers += 1;
     } else {
@@ -148,7 +149,7 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
       correctNameAnswer.textContent = `Correct Answer: ${currentCountry.name}`;
       correctCapitalAnswer.textContent = `Correct Answer: ${currentCountry.capital}`;
       correctRegionAnswer.textContent = `Correct Answer: ${currentCountry.region}`;
-      correctBordersAnswer.textContent = `Correct Answer: ${currentCountry.bordering.join("")}`;
+      correctBordersAnswer.textContent = `Correct Answer: ${currentCountry.bordering}`;
     } else if (state === "refresh") {
       correctNameAnswer.textContent = `Correct Answer:`;
       correctCapitalAnswer.textContent = `Correct Answer:`;
@@ -185,10 +186,10 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
 
     // Loop through sorted options and push options to page
     sortedOptions.forEach(object => {
-      nameAnswer.innerHTML += `<option value="${object.name}">${object.name}</option>`;
-      capitalAnswer.innerHTML += `<option value="${object.capital}">${object.capital}</option>`;
-      regionAnswer.innerHTML += `<option value="${object.region}">${object.region}</option>`;
-      borderingAnswer.innerHTML += `<option value="${object.bordering.join("")}">${object.bordering}</option>`;
+      nameAnswer.innerHTML += `<option value="${object.name.toLowerCase()}">${object.name}</option>`;
+      capitalAnswer.innerHTML += `<option value="${object.capital.toLowerCase()}">${object.capital}</option>`;
+      regionAnswer.innerHTML += `<option value="${object.region.toLowerCase()}">${object.region}</option>`;
+      borderingAnswer.innerHTML += `<option value="${object.bordering.join("").toLowerCase()}">${object.bordering}</option>`;
     })
   };
 
