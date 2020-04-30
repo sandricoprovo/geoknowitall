@@ -25,7 +25,6 @@ html {
   background-color: rgba(50, 55, 56, 0.82);
 
   .action__btn {
-    // margin: 8px 4px 4px 0px;
     font-style: 16px;
     @include setHeadersFont();
     color: darken($color: $green, $amount: 40);
@@ -52,12 +51,12 @@ html {
   }
 
   .game__start {
-    padding: 48px 0px 24px 0px;
+    padding: 48px 0px 8px 0px;
     text-align: center;
 
     .game__title {
-      margin-bottom: 16px;
-      color: $text-white;
+      margin-bottom: 8px;
+      color: $green;
       @include setHeadersFont();
     }
 
@@ -76,6 +75,7 @@ html {
       @include setBodyFont();
 
       span {
+        color: $green;
         @include setHeadersFont();
         font-weight: bold;
         font-style: italic;
@@ -88,21 +88,16 @@ html {
       p {
         width: 100%;
         font-size: 16px;
+        margin-bottom: 8px;
         color: $text-white;
         @include setHeadersFont();
       }
 
-      input {
-        width: 20%;
-        min-width: 140px;
-        padding: 8px;
-        margin: 8px 4px 4px 0px;
+      select {
+        width: 200px;
         height: 40px;
-        font-size: 16px;
-        border: 1px solid rgba(7, 59, 76, 0.3);
-        border-radius: 5px;
-        transition: all 0.4s ease-in-out;
-        color: lighten($color: #000, $amount: 20);
+        margin-right: 16px;
+        border: 1px solid rgba(7, 59, 76, 0.2);
 
         &:focus {
           outline: none;
@@ -113,8 +108,7 @@ html {
   }
 
   .game__flag {
-    padding-bottom: 24px;
-    margin-top: 32px;
+    padding-bottom: 8px;
     min-height: 50%;
 
     h1 {
@@ -132,7 +126,7 @@ html {
   }
 
   .game__inputs {
-    margin-top: 48px;
+    margin-top: 28px;
     min-height: 500px;
     padding: 16px 0px 16px 0px;
 

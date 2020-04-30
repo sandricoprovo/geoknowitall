@@ -24,14 +24,37 @@
     <section class="game__start">
       <h1 class="game__title">Geo Know It All 🌏</h1>
       <h3>Do you consider yourself good at geography? If your answer is yes, or
-        if you just want some fun, Geo Know It All is the game for you! </h3>
-      <p>This game is based on regions, so first you'll pick a region of the
-        world to focus on. <br><span>The five regions available are: Africa,
-          Americas, Asia, Europe & Oceania.</span>
+        if you just want some fun, Geo Know It All is the game for you!
+      </h3>
+      <p>
+        <span>Game Instructions:</span>
+        <br>
+        This game breaks countries into world regions,
+        so first you'll pick a region of the
+        world to focus on. The score is based on the number of countries in a
+        region multipled by four(4) questions for each country. This means that
+        you can get a total of four(4) points for each country. If you want to
+        know the number of countries in a region, just divide the score
+        denominator by 4 once you select a region. If you don't know the answer,
+        thats okay! Just hit the next button once to see the correct answers,
+        and then hit it again to go to the next country. It's all about
+        learning, so have fun!
+        <br><br>
+        <span>
+          The five regions available are: Africa, Americas, Asia, Europe &
+          Oceania.
+        </span>
       </p>
       <div class="region__selection">
-        <p>Enter the region you'd like to play in the box below.</p>
-        <input type="text" name="region-selected">
+        <p>Select the region you'd like to play from the dropdown menu below.
+        </p>
+        <select name="region-selected">
+          <option value="africa">Africa</option>
+          <option value="americas">Americas</option>
+          <option value="asia">Asia</option>
+          <option value="europe">Europe</option>
+          <option value="oceania">Oceania</option>
+        </select>
         <button class="submit__regionbtn action__btn">Submit Region</button>
       </div>
     </section>
@@ -47,7 +70,7 @@
       <div class="session__details">
         <p class="current__region">Current Region:</p>
         <p class="remaining">Countries Remaining: </p>
-        <p class="score__current">Current Score: </p>
+        <p class="score__current">Correct Answers: </p>
       </div>
 
       <!-- Answer Selection -->
@@ -61,7 +84,7 @@
           <p class="answer__correct correct__name">Correct Answer: </p>
         </label>
         <label class="input__field" for="capital">
-          Capital <br>
+          Capital City<br>
           <!-- <input type="text" name="capital"> -->
           <select name="capital" class="">
             <option value="" selected>Pick An Option</option>
@@ -77,7 +100,7 @@
           <p class="answer__correct correct__region">Correct Answer: </p>
         </label>
         <label class="input__field" for="borderingCountry">
-          Bordering Countries <span>ex: CAN</span> <br>
+          Bordering Countries <span>ex: CAN,MEX</span> <br>
           <!-- <input type="text" name="borderingCountry"> -->
 
           <select name="borderingCountry" class="">

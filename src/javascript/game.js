@@ -8,7 +8,6 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
   let displayedFlag = document.querySelector('.country__flag');
   let remainingCountries = document.querySelector('.remaining');
   let scoreTally = document.querySelector('.score__current');
-  let pickedRegion = document.querySelector('[name="region-selected"]');
   let currentRegionData = [];
   let selectionPool = []
   let currentOptions = [];
@@ -34,7 +33,7 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
     currentCountry = getRandomArrItem(countryData);
     setFlagData(currentCountry); // sets flag to page
     remainingCountries.textContent = `Countries Remaining: ${countryData.length}`;
-    scoreTally.textContent = `Current Score: ${correctAnswers} / ${totalScore}`;
+    scoreTally.textContent = `Correct Answers: ${correctAnswers} / ${totalScore}`;
     displayGameState("refresh");
     loadOptions(countryData, currentCountry);
   };
@@ -86,7 +85,7 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
       answerCheckerUtil(capitalAnswer, "capital");
       answerCheckerUtil(regionAnswer, "region");
       answerCheckerUtil(borderingAnswer, "bordering");
-      scoreTally.textContent = `Current Score: ${correctAnswers} / ${totalScore}`;
+      scoreTally.textContent = `Correct Answers: ${correctAnswers} / ${totalScore}`;
       setCorrectAnswers("fill");
     } else {
       document.querySelector('.game__flag > h1').textContent = "You already checked those answers.";
@@ -164,7 +163,12 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
     let capitalAnswer = document.querySelector('[name="capital"]');
     let regionAnswer = document.querySelector('[name="region"]');
     let borderingAnswer = document.querySelector('[name="borderingCountry"]');
-
+    let optionsObject = {
+      names: [],
+      capitals: [],
+      regions: [],
+      bordering: []
+    }
     // refresh current selections
     currentOptions = [];
     nameAnswer.innerHTML = `<option value="" selected>Pick An Option</option>`;
@@ -172,24 +176,35 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
     regionAnswer.innerHTML = `<option value="" selected>Pick An Option</option>`;
     borderingAnswer.innerHTML = `<option value="" selected>Pick An Option</option>`;
 
-    // Load All options to display
-    currentOptions.push(getRandomArrItem(countriesArr), getRandomArrItem(countriesArr), getRandomArrItem(countriesArr), curCountry);
-
-    // sort the options to randomize placement of correct answer
-    let sortedOptions = currentOptions.sort((obj1, obj2) => {
-      if (obj1.name < obj2.name) //sort string ascending
-        return -1
-      if (obj1.name > obj2.name)
-        return 1
-      return 0 //default return value (no sorting)
-    });
+    // Loads the current correct country to the options array, and then loads 3 random options to the array to make four. The do while makes sure that none of the 4 options are identical. 
+    currentOptions.push(curCountry);
+    do {
+      let randomCountry = getRandomArrItem(countriesArr);
+      if (randomCountry.name !== currentCountry.name) {
+        currentOptions.push(randomCountry);
+      } 
+    } while (currentOptions.length < 4);
 
     // Loop through sorted options and push options to page
-    sortedOptions.forEach(object => {
-      nameAnswer.innerHTML += `<option value="${object.name.toLowerCase()}">${object.name}</option>`;
-      capitalAnswer.innerHTML += `<option value="${object.capital.toLowerCase()}">${object.capital}</option>`;
-      regionAnswer.innerHTML += `<option value="${object.region.toLowerCase()}">${object.region}</option>`;
-      borderingAnswer.innerHTML += `<option value="${object.bordering.join("").toLowerCase()}">${object.bordering}</option>`;
+    currentOptions.forEach(object => {
+      optionsObject.names.push(object.name);
+      optionsObject.capitals.push(object.capital);
+      optionsObject.regions.push(object.region);
+      optionsObject.bordering.push(object.bordering);
+    })
+
+    // Logs options to screen in sorted order. This is done so the correct answers aren't always in the same position in each dropdown. 
+    optionsObject.names.sort().forEach(name => {
+      nameAnswer.innerHTML += `<option value="${name.toLowerCase()}">${name}</option>`;
+    })
+    optionsObject.capitals.sort().forEach(capital => {
+      capitalAnswer.innerHTML += `<option value="${capital.toLowerCase()}">${capital}</option>`;
+    })
+    optionsObject.regions.sort().forEach(region => {
+      regionAnswer.innerHTML += `<option value="${region.toLowerCase()}">${region}</option>`;
+    })
+    optionsObject.bordering.sort().forEach(borderArr => {
+      borderingAnswer.innerHTML += `<option value="${borderArr.join("").toLowerCase()}">${borderArr}</option>`;
     })
   };
 
@@ -197,7 +212,7 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
 
   // Get the user entered region on click
   submitRegionBtn.addEventListener('click', () => {
-    let selectedRegion = pickedRegion.value;
+    let selectedRegion = document.querySelector('[name="region-selected"]').value;
     getRegionData(selectedRegion.toLowerCase());
     totalScore = 0;
     correctAnswers = 0;
@@ -207,25 +222,24 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
     document.querySelector('.current__region').textContent = `Current Region: ${formattedRegion}`;
   })
 
-  // Sets the submit region button back to submit region
-  pickedRegion.addEventListener('focus', () => {
-    submitRegionBtn.textContent = "Submit Region";
-  })
-
   // Display next country in array
   nextConuntryBtn.addEventListener('click', () => {
-    displayNextCountry(currentRegionData);
-    // Removes input answer class
-    removeInputClasses(document.querySelector('[name="countryName"]'));
-    removeInputClasses(document.querySelector('[name="capital"]'));
-    removeInputClasses(document.querySelector('[name="region"]'));
-    removeInputClasses(document.querySelector('[name="borderingCountry"]'));
+    let nameAnswer = document.querySelector('[name="countryName"]');
+    
+    // Checks to see if user has checked answers OR Removes input answer class
+    if (!nameAnswer.classList.contains("input__field--correct") && !nameAnswer.classList.contains("input__field--incorrect")) {
+      checkAnswers();
+    } else {
+      displayNextCountry(currentRegionData);
+      removeInputClasses(document.querySelector('[name="countryName"]'));
+      removeInputClasses(document.querySelector('[name="capital"]'));
+      removeInputClasses(document.querySelector('[name="region"]'));
+      removeInputClasses(document.querySelector('[name="borderingCountry"]'));
+    }
   });
 
   // Checking the users answers on click
   checkAnswersBtn.addEventListener('click', () => {
     checkAnswers();
   })
-
-
 })();
