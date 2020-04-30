@@ -220,6 +220,12 @@ import { createCountryObjs as objectFormatter } from "./jsonFormatter.js";
     // Make First Letter Uppercase
     let formattedRegion = selectedRegion.replace(/^./, selectedRegion[0].toUpperCase())
     document.querySelector('.current__region').textContent = `Current Region: ${formattedRegion}`;
+
+    setCorrectAnswers("refresh");
+    removeInputClasses(document.querySelector('[name="countryName"]'));
+    removeInputClasses(document.querySelector('[name="capital"]'));
+    removeInputClasses(document.querySelector('[name="region"]'));
+    removeInputClasses(document.querySelector('[name="borderingCountry"]'));
   })
 
   // Display next country in array
